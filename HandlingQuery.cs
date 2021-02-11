@@ -10,11 +10,15 @@ namespace test_all_features_2
     {
         public static List<ExcelWorkSheet> workSheets = new List<ExcelWorkSheet>();
 
-        static Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 
 
-        
-        static string connectionString = ConfigurationManager.ConnectionStrings["SqlServerConnection"].ConnectionString;
+
+        static string connectionString;
+
+        public static void setConnectoinString(string con)
+        {
+            connectionString = con;
+        }
 
         public static void excuteQuery(Query query)
         {

@@ -14,6 +14,12 @@ namespace test_all_features_2
             int operation;
             string query;
             string sheetName;
+
+            Console.WriteLine("Enter your connection string: ");
+            string connectionString = Console.ReadLine();
+
+            HandlingQuery.setConnectoinString(connectionString);
+
             while (true)
             {
                 Console.WriteLine();
