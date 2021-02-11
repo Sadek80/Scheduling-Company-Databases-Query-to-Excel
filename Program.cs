@@ -118,6 +118,8 @@ namespace test_all_features_2
                         Console.WriteLine("you must add a query first.");
                     }
                 }
+                else
+                    Console.WriteLine("you've entered a wrong input");
             }
             Console.WriteLine();
             Console.WriteLine();
