@@ -1,0 +1,28 @@
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.exe
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.deps.json
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.runtimeconfig.json
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.runtimeconfig.dev.json
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\test all features 2.pdb
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\System.Data.Odbc.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\freebsd\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\linux\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\osx\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.csprojAssemblyReference.cache
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.AssemblyInfoInputs.cache
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.AssemblyInfo.cs
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.csproj.CoreCompileInputs.cache
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.csproj.CopyComplete
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.dll
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.pdb
+D:\Study\College\C#\test all features 2\obj\Debug\netcoreapp3.1\test all features 2.genruntimeconfig.cache
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\ClosedXML.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
+D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
