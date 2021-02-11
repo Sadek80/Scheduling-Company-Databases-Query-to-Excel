@@ -26,3 +26,43 @@ D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\System.IO.Packag
 D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll
 D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
 D:\Study\College\C#\test all features 2\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.exe
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.dll.config
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.deps.json
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.runtimeconfig.json
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.runtimeconfig.dev.json
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\test all features 2.pdb
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\ClosedXML.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Data.Odbc.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Drawing.Common.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Security.AccessControl.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Security.Permissions.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Security.Principal.Windows.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\System.Windows.Extensions.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\freebsd\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\linux\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\osx\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Data.Odbc.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Security.AccessControl.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
+D:\Study\College\C#\Sql-to-excel\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.csprojAssemblyReference.cache
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.AssemblyInfoInputs.cache
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.AssemblyInfo.cs
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.csproj.CoreCompileInputs.cache
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.csproj.CopyComplete
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.dll
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.pdb
+D:\Study\College\C#\Sql-to-excel\obj\Debug\netcoreapp3.1\test all features 2.genruntimeconfig.cache
