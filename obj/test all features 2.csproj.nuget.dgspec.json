@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Study\\College\\C#\\Sql-to-excel\\test all features 2.csproj": {}
+    "D:\\Study\\College\\C#\\Test Timer and local db\\Sql-to-excel\\test all features 2.csproj": {}
   },
   "projects": {
-    "D:\\Study\\College\\C#\\Sql-to-excel\\test all features 2.csproj": {
+    "D:\\Study\\College\\C#\\Test Timer and local db\\Sql-to-excel\\test all features 2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\College\\C#\\Sql-to-excel\\test all features 2.csproj",
+        "projectUniqueName": "D:\\Study\\College\\C#\\Test Timer and local db\\Sql-to-excel\\test all features 2.csproj",
         "projectName": "test all features 2",
-        "projectPath": "D:\\Study\\College\\C#\\Sql-to-excel\\test all features 2.csproj",
+        "projectPath": "D:\\Study\\College\\C#\\Test Timer and local db\\Sql-to-excel\\test all features 2.csproj",
         "packagesPath": "C:\\Users\\Sadek\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\College\\C#\\Sql-to-excel\\obj\\",
+        "outputPath": "D:\\Study\\College\\C#\\Test Timer and local db\\Sql-to-excel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sadek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -51,6 +51,10 @@
             "System.Data.Odbc": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
             }
           },
           "imports": [

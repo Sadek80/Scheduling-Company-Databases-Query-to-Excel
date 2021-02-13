@@ -7,27 +7,35 @@ namespace test_all_features_2
 {
     class SendingEmail
     {
-        private static string fromEmail;
-        private static string fromEmailPassword;
-        private static string toEmail;
+        private  static string fromEmail = "mohamedsadk80@gmail.com";
+        private  static string fromEmailPassword = "123221133456554466";
+        private static List<string> toEmails;
         private static string mailSubject;
         private static string mailBodyText;
         private static string excelFilePath;
 
 
-        public static void setEmailData(string from, string password, string to, string subject, string body, string path)
+        public static void setEmailData(List<string> toEmaiilsList , string subject, string body, string path)
         {
-            fromEmail = from;
-            fromEmailPassword = password;
-            toEmail = to;
+            toEmails = toEmaiilsList;
             mailSubject = subject;
             mailBodyText = body;
             excelFilePath = path;
+            
         }
 
 
-        public static void sendEmail()
+        public static void sendEmailNow()
         {
+            foreach (string email in toEmails)
+            {
+                sendEmail(HandlingLocalDb.getDepartmentEmail(email));
+            }
+        }
+
+        public static void sendEmail(string toEmail)
+        {
+            
             try
             {
                 MailMessage mail = new MailMessage();
@@ -47,8 +55,9 @@ namespace test_all_features_2
                 smtp.Send(mail);
 
 
-
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Email has been successfuly sent!!");
+                Console.ResetColor();
                 Console.WriteLine();
                 Console.WriteLine();
             }
