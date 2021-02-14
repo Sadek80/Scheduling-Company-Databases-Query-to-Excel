@@ -76,6 +76,7 @@ namespace test_all_features_2
             if (allCompanies.Count == 0)
             {
                 Console.WriteLine("Please Go to Companies Settings and add companies and departments to the Database");
+                Console.WriteLine();
                 return;
             }
                 Console.WriteLine("Choose the Company you want to send to");
