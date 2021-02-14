@@ -66,7 +66,7 @@ namespace test_all_features_2
             workSheets.Clear();
         }
 
-        public static void testQueries(Query query)
+        public static void testQueries(string query)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace test_all_features_2
                 {
                     connection.Open();
 
-                    OdbcCommand command = new OdbcCommand(query.getQuery(), connection);
+                    OdbcCommand command = new OdbcCommand(query, connection);
                     using (var reader = command.ExecuteReader())
                     {
                         Console.WriteLine("Query result:");
@@ -98,13 +98,13 @@ namespace test_all_features_2
                             Console.WriteLine(sbRow.ToString());
                         }
                         connection.Close();
-
+                        Console.WriteLine();
                     }
                 }
            }
             catch(Exception e)
             {
-                Console.WriteLine("in the handling querry: "+e.Message);
+                Console.WriteLine("in the test querry: "+e.Message);
             }
         }
     }

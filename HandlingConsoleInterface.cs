@@ -35,9 +35,11 @@ namespace test_all_features_2
 
             while (true)
             {
+                Console.WriteLine();
                 Console.WriteLine("1. Create and Send Excel File."
                     + "\n 2. Companies Settings."
-                    + "\n 3. Exit");
+                    + "\n 3. Test a Query"
+                    + "\n 4. Exit");
 
                 operation = int.Parse(Console.ReadLine());
 
@@ -51,7 +53,26 @@ namespace test_all_features_2
                     CompanySettingsInterface();
                 }
 
-                else if(operation == 3)
+                else if (operation == 3)
+                {
+                    string query;
+                    Console.WriteLine();
+                    Console.WriteLine("Add your Query: ");
+                    query = Console.ReadLine();
+
+                    if (query.Length != 0)
+                    {
+                        Console.WriteLine("Loading...");
+                        HandlingQuery.testQueries(query);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("you must add a query first.");
+                    }
+                }
+
+                else if(operation == 4)
                 {
                     break;
                 }
@@ -519,8 +540,7 @@ namespace test_all_features_2
                 Console.Write("Enter your opertion number: ");
                 Console.WriteLine("\n 1. Add sql query " +
                     "\n 2. make the excel file"
-                    + "\n 3. Test Query"
-                    + "\n 4. Back to Main Interface");
+                    + "\n 3. Back to Main Interface");
                 operation = int.Parse(Console.ReadLine());
                 if (operation == 1)
                 {
@@ -631,27 +651,7 @@ namespace test_all_features_2
                         Console.WriteLine("you must add a query first.");
                     }
                 }
-                else if (operation == 3)
-                {
-                    if (sql.Count != 0)
-                    {
-
-
-                        foreach (Query sqlQuery in sql)
-                        {
-                            HandlingQuery.testQueries(sqlQuery);
-
-                        }
-                        HandlingQuery.clearList();
-                        sql.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("you must add a query first.");
-                    }
-                }
-                else if(operation == 4)
+                else if(operation == 3)
                 {
                     break;
                 }
