@@ -57,6 +57,7 @@ namespace test_all_features_2
 
         public static void makeExcelFile()
         {
+            Console.WriteLine("Creating the file...");
             HandlingExcelFile.makeExcelFile(workSheets);
         }
 

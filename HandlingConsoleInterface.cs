@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace test_all_features_2
 {
@@ -82,13 +83,13 @@ namespace test_all_features_2
             
             for (int i = 0; i < allCompanies.Count; i++)
             {
-                Console.WriteLine(i + ". " + allCompanies[i]);
+                Console.WriteLine((i+1) + ". " + allCompanies[i]);
             }
 
             Console.WriteLine();
             choice = int.Parse(Console.ReadLine());
 
-            companyName = allCompanies[choice];
+            companyName = allCompanies[choice - 1];
             allCompanies.Clear();
             List<string> departmentToSend = new List<string>();
 
@@ -107,14 +108,42 @@ namespace test_all_features_2
                 if (operation == 1)
                 {
                     //TODO list of all company departments to choose from
-                    for (int i = 0; i < allDepartments.Count; i++)
+                    if (departmentToSend.Count == 0)
                     {
-                        Console.WriteLine(i + ". " + allDepartments[i]);
+                        Console.WriteLine();
+                        for (int i = 0; i < allDepartments.Count; i++)
+                        {
+                            Console.WriteLine((i + 1) + ". " + allDepartments[i]);
+
+                        }
+                    }
+                    else if(departmentToSend.Count == allDepartments.Count)
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("You've choosed all the departments");
+                        Console.WriteLine();
+                        continue;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < allDepartments.Count; i++)
+                        {
+                            Console.WriteLine();
+                            foreach(string department in departmentToSend)
+                            {
+                                if (department != allDepartments[i])
+                                {
+                                    Console.WriteLine((i + 1) + ". " + allDepartments[i]);
+
+                                }
+                            }
+
+                        }
                     }
 
                     Console.WriteLine();
                     choice = int.Parse(Console.ReadLine());
-                    departmentToSend.Add(allDepartments[choice]);
+                    departmentToSend.Add(allDepartments[choice - 1]);
                     Console.WriteLine();
 
                 }
@@ -262,13 +291,13 @@ namespace test_all_features_2
             List<string> allCompanies = HandlingLocalDb.ListOfAllCompaniesNames();
            for(int i = 0; i < allCompanies.Count; i++)
             {
-                Console.WriteLine(i+". "+allCompanies[i]);
+                Console.WriteLine((i+1)+". "+allCompanies[i]);
             }
 
             Console.WriteLine();
             choice = int.Parse(Console.ReadLine());
 
-            companyName = allCompanies[choice];
+            companyName = allCompanies[choice - 1];
             allCompanies.Clear();
 
             while (true)
@@ -302,12 +331,12 @@ namespace test_all_features_2
                     List<string> allDepartments = HandlingLocalDb.ListOfAllDepartmentsNamesInACompany(companyName);
                     for (int i = 0; i < allDepartments.Count; i++)
                     {
-                        Console.WriteLine(i + ". " + allDepartments[i]);
+                        Console.WriteLine((i+1) + ". " + allDepartments[i]);
                     }
 
                     Console.WriteLine();
                     choice = int.Parse(Console.ReadLine());
-                    departmentName = allDepartments[choice];
+                    departmentName = allDepartments[choice - 1];
                     allDepartments.Clear(); 
                     Console.WriteLine();
 
@@ -390,14 +419,14 @@ namespace test_all_features_2
             List<string> allCompanies = HandlingLocalDb.ListOfAllCompaniesNames();
             for (int i = 0; i < allCompanies.Count; i++)
             {
-                Console.WriteLine(i + ". " + allCompanies[i]);
+                Console.WriteLine((i+1) + ". " + allCompanies[i]);
             }
 
             Console.WriteLine();
             choice = int.Parse(Console.ReadLine());
 
            
-                companyName = allCompanies[choice];
+                companyName = allCompanies[choice - 1];
                 allCompanies.Clear();
 
           
@@ -437,12 +466,12 @@ namespace test_all_features_2
                     List<string> allDepartments = HandlingLocalDb.ListOfAllDepartmentsNamesInACompany(companyName);
                     for (int i = 0; i < allDepartments.Count; i++)
                     {
-                        Console.WriteLine(i + ". " + allDepartments[i]);
+                        Console.WriteLine((i+1) + ". " + allDepartments[i]);
                     }
 
                     Console.WriteLine();
                     choice = int.Parse(Console.ReadLine());
-                    departmentName = allDepartments[choice];
+                    departmentName = allDepartments[choice - 1];
                     allDepartments.Clear();
                     Console.WriteLine();
 
@@ -489,7 +518,8 @@ namespace test_all_features_2
                 Console.Write("Enter your opertion number: ");
                 Console.WriteLine("\n 1. Add sql query " +
                     "\n 2. make the excel file"
-                    + "\n 3. Test Query");
+                    + "\n 3. Test Query"
+                    + "\n 4. Back to Main Interface");
                 operation = int.Parse(Console.ReadLine());
                 if (operation == 1)
                 {
@@ -523,9 +553,12 @@ namespace test_all_features_2
                         }
 
                         HandlingQuery.makeExcelFile();
+                        while (true)
+                        {
+
                         Console.WriteLine("\n 1. Send Email Now"
-                            + "\n 3. Send Email in a Specific Time"
-                            + "\n 2. Exit");
+                            + "\n 2. Send Email in a Specific Time"
+                            + "\n 3. Exit");
                         operation = int.Parse(Console.ReadLine());
                         if (operation == 1)
                         {
@@ -536,22 +569,60 @@ namespace test_all_features_2
                             Console.WriteLine("Write emial \"Body\" text: ");
                             string body = Console.ReadLine();
                             Console.WriteLine();
-                            SendingEmail.setEmailData(Departments, subject, body, HandlingExcelFile.getPath());
+                            SendingEmail SendingInstance = new SendingEmail(Departments, subject, body, HandlingExcelFile.getPath());
                             Console.WriteLine($"Email with the excel file is Sending....");
-                            SendingEmail.sendEmailNow();
+                            SendingInstance.sendEmailNow();
 
                             HandlingQuery.clearList();
                             sql.Clear();
-                            break;
+                                break;
                         }
                         else if (operation == 2)
                         {
+                            Console.WriteLine();
+                            Console.WriteLine("Write email \"Subject\": ");
+                            string subject = Console.ReadLine();
+                            Console.WriteLine();
+                            Console.WriteLine("Write emial \"Body\" text: ");
+                            string body = Console.ReadLine();
+                            Console.WriteLine();
+                            SendingEmail SendingInstance = new SendingEmail(Departments, subject, body, HandlingExcelFile.getPath());
 
+                            Console.WriteLine();
+                            Console.WriteLine("Enter Sending Time: ex(16:00), ex(12:30)");
+                            string Time = Console.ReadLine();
+                            int charLocation = Time.IndexOf(':');
+                            int Hour = int.Parse( Time.Substring(0, charLocation));
+                            int Minute = int.Parse(Time.Substring(charLocation + 1));
+
+                            DateTime now = DateTime.Now;
+                            DateTime firstRun = new DateTime(now.Year, now.Month, now.Day, Hour, Minute, 0, 0);
+                            if (now > firstRun)
+                            {
+                                Console.WriteLine("Time is passed, please Enter valid time.");
+                                continue;
+                            }
+                            TimeSpan timeToGo = firstRun - now;
+                            Thread thread = new Thread(() =>
+                            {
+                                SendingInstance.sendingEmailInTime(timeToGo);
+
+                            });
+                            thread.Start();
+
+
+                            Console.WriteLine("Email with the excel file will be Sent at: "+Hour+":"+""+Minute);
+
+                            HandlingQuery.clearList();
+                            sql.Clear();
+                                break;
                         }
                         else if(operation == 3)
                             break;
                         else
                             Console.WriteLine("You've entered a wrong input");
+                        }
+
                     }
                     else
                     {
@@ -579,12 +650,19 @@ namespace test_all_features_2
                         Console.WriteLine("you must add a query first.");
                     }
                 }
+                else if(operation == 4)
+                {
+                    break;
+                }
                 else
                     Console.WriteLine("you've entered a wrong input");
             }
         }
 
-        
+        //public void threadOperations()
+        //{
+
+        //}
 
     }
 }
