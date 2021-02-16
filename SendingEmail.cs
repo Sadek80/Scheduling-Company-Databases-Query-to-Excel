@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net.Mail;
 using System.Timers;
-
+using System.Threading;
 namespace test_all_features_2
 {
 
@@ -15,31 +15,39 @@ namespace test_all_features_2
         private string mailSubject;
         private string mailBodyText;
         private string excelFilePath;
+        private string companyName;
 
 
 
-        public SendingEmail(List<string> toEmaiilsList , string subject, string body, string path)
+        public SendingEmail(List<string> toEmaiilsList , string subject, string body, string path, string companyName)
         {
             toEmails = toEmaiilsList;
             mailSubject = subject;
             mailBodyText = body;
             excelFilePath = path;
+            this.companyName = companyName;
         }
 
         /// <summary>
         /// Send the email in a certain time
         /// </summary>
         /// <param name="timeToGo">The time that the email will be sent at</param>
-        public void sendingEmailInTime(TimeSpan timeToGo)
+        public void sendingEmailInTime(int hour, int minute)
         {
             // using the Sceduler class and specify the Time and the Task
-            Scheduler.Instance.ScheduleTask(timeToGo, () =>
+            Thread thread = new Thread(() =>
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("The schedule starts now");
-                Console.ResetColor();
-                sendEmailNow();
+                
+                HandlingScheduler.IntervalInMinutes(hour, minute, 5, () =>
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.WriteLine("The schedule starts now");
+                    Console.ResetColor();
+                    sendEmailNow();
+                });
+                
             });
+            thread.Start();
 
         }
 
@@ -47,7 +55,7 @@ namespace test_all_features_2
         {
             foreach (string email in toEmails)
             {
-                sendEmail(HandlingLocalDb.getDepartmentEmail(email));
+                sendEmail(HandlingLocalDb.getDepartmentEmail(email, companyName));
             }
         }
 
