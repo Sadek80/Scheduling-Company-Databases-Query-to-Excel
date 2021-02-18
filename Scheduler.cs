@@ -11,8 +11,8 @@ namespace test_all_features_2
     class Scheduler
     {
         private static Scheduler _instance;
-        private static List<Timer> timers = new List<Timer>();
 
+        private static List<Timer> timers = new List<Timer>();
         public Dictionary<string, Timer> timerDictionary = new Dictionary<string, Timer>();
 
 
@@ -51,7 +51,7 @@ namespace test_all_features_2
             DateTime now = DateTime.Now;
             DateTime firstRun = new DateTime(now.Year, now.Month, now.Day, hour, min, 0, 0);
 
-            // If Time is passed, then add a day to the Current Time
+            // If the given Time is passed, then add a day to the Current Time, so it will be started the next day at the same time
             if (now > firstRun)
             {
                 firstRun = firstRun.AddDays(1);

@@ -21,7 +21,7 @@ namespace test_all_features_2
         private static string dataBaseName = "Database1.mdf";
         private static string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + dataBaseName + ";Integrated Security=True";
 
-        // Make SQL Connections
+        // Make SQL Connections for Parallel Usage and Avoid any Conflict
         private static SqlConnection conection = new SqlConnection(ConnectionString);
         private static SqlConnection conection2 = new SqlConnection(ConnectionString);
         private static SqlConnection conection3 = new SqlConnection(ConnectionString);
@@ -29,7 +29,7 @@ namespace test_all_features_2
         private static SqlConnection conection5 = new SqlConnection(ConnectionString);
 
 
-        // Make SQL Commands for Parallel Usage
+        // Make SQL Commands for Parallel Usage and Avoid any Conflict
         private static SqlCommand command;
         private static SqlCommand command2;
         private static SqlCommand command3;
@@ -235,6 +235,44 @@ namespace test_all_features_2
         }
 
 
+        /// <summary>
+        /// Add more Queries to the Schedule Task
+        /// </summary>
+        /// <param name="department">Query</param>
+        /// <param name="taskName">Schedule Task Name</param>
+        public static void AddSingleQueryToTask(Query query, string taskName)
+        {
+            try
+            {
+                command = new SqlCommand("INSERT INTO [Schedule_Query] (ScheduleName, Query, QueryName, SheetName)" +
+                            "VALUES(@ScheduleName, @Query, @QueryName, @SheetName)", conection);
+                command.CommandType = CommandType.Text;
+                command.Parameters.AddWithValue("@ScheduleName", taskName);
+                command.Parameters.AddWithValue("@Query", query.getQuery());
+                command.Parameters.AddWithValue("@QueryName", query.queryName);
+                command.Parameters.AddWithValue("@SheetName", query.getQuerySheetName());
+               
+
+                conection.Open();
+                command.ExecuteNonQuery();
+                conection.Close();
+
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("Query was added to the task successfuly!");
+                Console.ResetColor();
+
+                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+                handlingLocalDb.AbortTaskThread(getTaskByName(taskName));
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("in the Add a Query to a Task: " + e.Message);
+                Console.ResetColor();
+
+            }
+        }
 
         ////////////////////////////////////
 
@@ -1143,6 +1181,9 @@ namespace test_all_features_2
         /// <param name="newName"></param>
         public static void UpdateScheduleTaskName(string currentName, string newName)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(currentName);
             try
             {
                 command = new SqlCommand("UPDATE Schedule_Task SET ScheduleName = @newName WHERE ScheduleName = @currentName", conection);
@@ -1156,9 +1197,7 @@ namespace test_all_features_2
                 Console.WriteLine("Schedule Task Name was Updated Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
-
-                handlingLocalDb.AbortTaskThread(getTaskByName(newName));
+                handlingLocalDb.runTask(getTaskByName(newName));
             }
             catch (Exception e)
             {
@@ -1176,6 +1215,9 @@ namespace test_all_features_2
         /// <param name="newSubject"></param>
         public static void UpdateScheduleEmailSubject(string scheduleName, string newSubject)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(scheduleName);
             try
             {
                 command = new SqlCommand("UPDATE Schedule_Task SET EmailSubject = @newSubject WHERE ScheduleName = @scheduleName", conection);
@@ -1189,9 +1231,7 @@ namespace test_all_features_2
                 Console.WriteLine("Schedule Email Subject was Updated Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
-
-                handlingLocalDb.AbortTaskThread(getTaskByName(scheduleName));
+                handlingLocalDb.runTask(getTaskByName(scheduleName));
             }
             catch (Exception e)
             {
@@ -1209,6 +1249,9 @@ namespace test_all_features_2
         /// <param name="newBody"></param>
         public static void UpdateScheduleEmailBody(string scheduleName, string newBody)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(scheduleName);
             try
             {
                 command = new SqlCommand("UPDATE Schedule_Task SET EmailBody = @newBody WHERE ScheduleName = @scheduleName", conection);
@@ -1222,9 +1265,8 @@ namespace test_all_features_2
                 Console.WriteLine("Schedule Enail Body was Updated Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
 
-                handlingLocalDb.AbortTaskThread(getTaskByName(scheduleName));
+                handlingLocalDb.runTask(getTaskByName(scheduleName));
             }
             catch (Exception e)
             {
@@ -1242,6 +1284,9 @@ namespace test_all_features_2
         /// <param name="newName"></param>
         public static void UpdateScheduleExcelFileName(string scheduleName, string newName)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(scheduleName);
             try
             {
                 command = new SqlCommand("UPDATE Schedule_Task SET ExcelFileName = @newName WHERE ScheduleName = @scheduleName", conection);
@@ -1255,9 +1300,8 @@ namespace test_all_features_2
                 Console.WriteLine("Schedule Excel File Name was Updated Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
 
-                handlingLocalDb.AbortTaskThread(getTaskByName(scheduleName));
+                handlingLocalDb.runTask(getTaskByName(scheduleName));
             }
             catch (Exception e)
             {
@@ -1275,6 +1319,9 @@ namespace test_all_features_2
         /// <param name="newPath"></param>
         public static void UpdateScheduleExcelFilePath(string scheduleName, string newPath)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(scheduleName);
             try
             {
                 command = new SqlCommand("UPDATE Schedule_Task SET ExcelFilePath = @newPath WHERE ScheduleName = @scheduleName", conection);
@@ -1288,9 +1335,8 @@ namespace test_all_features_2
                 Console.WriteLine("Schedule Excel File Path was Updated Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
 
-                handlingLocalDb.AbortTaskThread(getTaskByName(scheduleName));
+                handlingLocalDb.runTask(getTaskByName(scheduleName));
             }
             catch (Exception e)
             {
@@ -1647,6 +1693,9 @@ namespace test_all_features_2
         /// <param name="departmentName"></param>
         public static void DeleteDepartmentFromTask(string taskName, string departmentName)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(taskName);
             try
             {
                 command = new SqlCommand("DELETE FROM Schedule_Emails WHERE ScheduleName = @taskName AND DepartmentName = @departmentName ", conection);
@@ -1662,9 +1711,17 @@ namespace test_all_features_2
                 Console.WriteLine("Department was Deleted Successfuly!");
                 Console.ResetColor();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+                if (ListOfAllDepartmentInATask(taskName).Count != 0)
+                {
 
-                handlingLocalDb.AbortTaskThread(getTaskByName(taskName));
+                    handlingLocalDb.AbortTaskThread(getTaskByName(taskName));
+                }
+                else
+                {
+                    DeleteTask(taskName);
+                    Console.WriteLine("Task was Deleted, Because there's no Departments left");
+                }
+               
             }
             catch (Exception e)
             {
@@ -1681,6 +1738,9 @@ namespace test_all_features_2
         /// <param name="QueryName"></param>
         public static void DeleteQueryFromTask(string taskName, string QueryName)
         {
+            HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
+
+            handlingLocalDb.AbortTaskThread(taskName);
             try
             {
                 command = new SqlCommand("DELETE FROM Schedule_Query WHERE ScheduleName = @taskName AND QueryName = @QueryName ", conection);
@@ -1692,13 +1752,20 @@ namespace test_all_features_2
                 command.ExecuteNonQuery();
                 conection.Close();
 
-                HandlingLocalDb handlingLocalDb = new HandlingLocalDb();
-
-                handlingLocalDb.AbortTaskThread(getTaskByName(taskName));
-
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("Query was Deleted Successfuly!");
                 Console.ResetColor();
+
+                if (ListOfAllQueriesInTask(taskName).Count != 0)
+                {
+
+                    handlingLocalDb.AbortTaskThread(getTaskByName(taskName));
+                }
+                else
+                {
+                    DeleteTask(taskName);
+                    Console.WriteLine("Task was Deleted, Because there's no Queries left to Execute");
+                }
             }
             catch (Exception e)
             {
@@ -1733,7 +1800,7 @@ namespace test_all_features_2
                                 int charLocation = department.getTime().IndexOf(':');
                                 int Hour = int.Parse(department.getTime().Substring(0, charLocation));
                                 int Minute = int.Parse(department.getTime().Substring(charLocation + 1));
-                                Console.WriteLine(department.getName() + " Task is starting...");
+                                Console.WriteLine(task.ScheduleName + " - "+ department.getName() + " Task is starting...");
 
                             Thread myThread = new Thread(() =>
                             {
@@ -1786,7 +1853,6 @@ namespace test_all_features_2
                         }
                        
                     }
-
                 }
                 catch (Exception e)
                 {

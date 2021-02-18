@@ -394,7 +394,7 @@ namespace test_all_features_2
             List<Department> departments = new List<Department>();
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("Enter the Company Name");
+            Console.WriteLine("Enter the Company Name (Must Be Unique): ");
             CompanyName = Console.ReadLine();
 
             while (true)
@@ -820,7 +820,7 @@ namespace test_all_features_2
             int choice;
             string companyName;
             Console.WriteLine();
-            Console.WriteLine("Enter Schedule Name: ");
+            Console.WriteLine("Enter Schedule Task Name (Must Be Unique): ");
             string scheduleName = Console.ReadLine();
 
             //List of all Companies
@@ -1061,7 +1061,8 @@ namespace test_all_features_2
                 + "\n 2. Edit Department send Time."
                 + "\n 3. Edit Queries."
                 + "\n 4. Add a new Department to this task"
-                + "\n 5. Back to Settings");
+                + "\n 5. Add a new Query to this Task"
+                + "\n 6. Back to Settings");
 
                 operation = int.Parse(Console.ReadLine());
 
@@ -1150,6 +1151,20 @@ namespace test_all_features_2
                     break;
                 }
                 else if (operation == 5)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Add your Query: ");
+                    string query = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine("Add Query Name: ");
+                    string Name = Console.ReadLine();
+                    Console.WriteLine("Add the sheet name for this query: ");
+                    string sheetName = Console.ReadLine();
+                    HandlingLocalDb.AddSingleQueryToTask(new Query(query, sheetName, Name), taskName);
+                    break;
+                }
+
+                else if (operation == 6)
                 {
                     break;
                 }
@@ -1393,7 +1408,7 @@ namespace test_all_features_2
                     //TODO Update function
                     HandlingLocalDb.UpdateSheetName(taskName, queryName, newData);
                 }
-                else if (operation == 4)
+                else if(operation == 4)
                 {
                     break;
                 }
