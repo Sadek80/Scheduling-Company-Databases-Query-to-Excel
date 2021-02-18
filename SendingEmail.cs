@@ -6,19 +6,54 @@ using System.Timers;
 using System.Threading;
 namespace test_all_features_2
 {
-
+    /// <summary>
+    /// Class for Sending the Emails
+    /// </summary>
     class SendingEmail
     {
+        // Default Email Data
         private string fromEmail = "mohamedsadk80@gmail.com";
         private string fromEmailPassword = "123221133456554466";
+
+        /// <summary>
+        /// List of Department Emails
+        /// </summary>
         private List<string> toEmails;
+
+        /// <summary>
+        /// Single Department Email
+        /// </summary>
+        private string toEmail;
+
+        /// <summary>
+        /// Mail Subject
+        /// </summary>
         private string mailSubject;
+
+        /// <summary>
+        /// Mail Body
+        /// </summary>
         private string mailBodyText;
+
+        /// <summary>
+        /// The Path of the Excel File Name that will be sent to the Departments
+        /// </summary>
         private string excelFilePath;
+
+        /// <summary>
+        /// Name of the Company
+        /// </summary>
         private string companyName;
 
 
-
+        /// <summary>
+        /// Public Constructor to Setting Up the Default Sending Email Data, Used for Sending the Email Now
+        /// </summary>
+        /// <param name="toEmaiilsList">List of Departments Emails</param>
+        /// <param name="subject">Mail Subject</param>
+        /// <param name="body">Mail Body</param>
+        /// <param name="path">Excel File Path</param>
+        /// <param name="companyName">Company Name</param>
         public SendingEmail(List<string> toEmaiilsList , string subject, string body, string path, string companyName)
         {
             toEmails = toEmaiilsList;
@@ -28,29 +63,66 @@ namespace test_all_features_2
             this.companyName = companyName;
         }
 
+
         /// <summary>
-        /// Send the email in a certain time
+        /// Public Constructor for Setting Up the Sending Email Data, Used for the Schedule Tasks
         /// </summary>
-        /// <param name="timeToGo">The time that the email will be sent at</param>
-        public void sendingEmailInTime(int hour, int minute)
+        /// <param name="toEmail">Department Email</param>
+        /// <param name="mailSubject">Mail Subject</param>
+        /// <param name="mailBodyText">Mail Body</param>
+        /// <param name="excelFilePath">Excel File Path</param>
+        public SendingEmail(string toEmail, string mailSubject, string mailBodyText, string excelFilePath)
         {
-            // using the Sceduler class and specify the Time and the Task
-            Thread thread = new Thread(() =>
+            this.toEmail = toEmail;
+            this.mailSubject = mailSubject;
+            this.mailBodyText = mailBodyText;
+            this.excelFilePath = excelFilePath;
+        }
+
+
+
+        /// <summary>
+        /// Send the email in a specific time, used for the Schedule Tasks
+        /// </summary>
+        public void sendingEmail()
+        {
+            try
             {
-                
-                HandlingScheduler.IntervalInMinutes(hour, minute, 5, () =>
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    Console.WriteLine("The schedule starts now");
-                    Console.ResetColor();
-                    sendEmailNow();
-                });
-                
-            });
-            thread.Start();
+                MailMessage mail = new MailMessage();
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress(fromEmail);
+                mail.To.Add(toEmail);
+                mail.Subject = mailSubject;
+                mail.Body = mailBodyText;
+
+                System.Net.Mail.Attachment attachment;
+                attachment = new Attachment(excelFilePath);
+                mail.Attachments.Add(attachment);
+
+                smtp.Port = 587;
+                smtp.Credentials = new System.Net.NetworkCredential(fromEmail, fromEmailPassword);
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Email has been sent successfuly!!");
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            catch (Exception e)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine("in the send email: " + e.Message);
+                Console.ResetColor();
+            }
 
         }
 
+
+        /// <summary>
+        /// Sending Email Now, for Every Department
+        /// </summary>
         public void sendEmailNow()
         {
             foreach (string email in toEmails)
@@ -59,6 +131,10 @@ namespace test_all_features_2
             }
         }
 
+        /// <summary>
+        /// Sending Email for the Department passed
+        /// </summary>
+        /// <param name="toEmail">Department Email</param>
         public void sendEmail(string toEmail)
         {
             

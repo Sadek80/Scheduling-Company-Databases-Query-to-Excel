@@ -6,67 +6,101 @@ using System.Data;
 using System.Configuration;
 namespace test_all_features_2
 {
-    class  HandlingQuery
+    /// <summary>
+    /// Class for Handling the Execution of the Queries
+    /// </summary>
+    class HandlingQuery
     {
-        public static List<ExcelWorkSheet> workSheets = new List<ExcelWorkSheet>();
+        /// <summary>
+        /// List of the Work Book Work Sheets
+        /// </summary>
+        private List<ExcelWorkSheet> workSheets = new List<ExcelWorkSheet>();
 
 
+        public HandlingQuery()
+        {
 
+        }
 
+        /// <summary>
+        /// Connection String Supplied by the user
+        /// </summary>
         static string connectionString;
 
+        /// <summary>
+        /// Set the Data Base Connection String
+        /// </summary>
+        /// <param name="con">Connection String</param>
         public static void setConnectoinString(string con)
         {
-            connectionString = con;
-        }
-
-        public static void excuteQuery(Query query)
-        {
-          try
-          {
-                
-            using (OdbcConnection connection =
-               new OdbcConnection(connectionString))
+            try
             {
-                connection.Open();
-
-                OdbcCommand command = new OdbcCommand(query.getQuery(), connection);
-                connection.Close();
-
-
-                DataTable table = new DataTable();
-
-                OdbcDataAdapter adapter = new OdbcDataAdapter(command);
-
-                adapter.Fill(table);
-
-                workSheets.Add(new ExcelWorkSheet(query.getQuerySheetName(), table));
+                connectionString = con;
 
             }
-           }
             catch (Exception e)
             {
-                Console.WriteLine("in the handling query: "+e.Message);
+                Console.WriteLine("in Connection String: " + e.Message);
             }
-
-
-
-
-
         }
 
-        public static void makeExcelFile()
+        /// <summary>
+        /// Execute a Query and Generate the Data Table that will be Shown in the Query Work Sheet 
+        /// </summary>
+        /// <param name="query">Query Statement</param>
+        public void excuteQuery(Query query)
         {
-            Console.WriteLine("Creating the file...");
-            HandlingExcelFile.makeExcelFile(workSheets);
+            try
+            {
+
+                using (OdbcConnection connection =
+                   new OdbcConnection(connectionString))
+                {
+                    connection.Open();
+
+                    OdbcCommand command = new OdbcCommand(query.getQuery(), connection);
+                    connection.Close();
+
+
+                    DataTable table = new DataTable();
+
+                    OdbcDataAdapter adapter = new OdbcDataAdapter(command);
+
+                    // Fill the Table with the Query Result
+                    adapter.Fill(table);
+
+                    // Add the Work Sheet to the Work Book  Work Sheets List
+                    workSheets.Add(new ExcelWorkSheet(query.getQuerySheetName(), table));
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("in the handling query: " + e.Message);
+            }
         }
 
-        public static void clearList()
+        /// <summary>
+        /// Get The Work Sheets
+        /// </summary>
+        /// <returns>List of Work Sheets</returns>
+        public List<ExcelWorkSheet> getWorkSheetsList()
+        {
+            return workSheets;
+        }
+
+        /// <summary>
+        /// Clearing the Work Sheet List
+        /// </summary>
+        public void clearList()
         {
             workSheets.Clear();
         }
 
-        public static void testQueries(string query)
+        /// <summary>
+        /// Method to Test the Data Base Connection String and Showing the Query result in the Console.
+        /// </summary>
+        /// <param name="query">Query Statemnt</param>
+        public void testQueries(string query)
         {
             try
             {
@@ -101,10 +135,10 @@ namespace test_all_features_2
                         Console.WriteLine();
                     }
                 }
-           }
-            catch(Exception e)
+            }
+            catch (Exception e)
             {
-                Console.WriteLine("in the test querry: "+e.Message);
+                Console.WriteLine("in the test querry: " + e.Message);
             }
         }
     }
