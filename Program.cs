@@ -21,6 +21,8 @@ namespace test_all_features_2
             Console.WriteLine();
             Console.WriteLine("Thank you");
 
+            Console.ReadKey();
+
         }
     }
 }
